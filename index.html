@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mental Health Detector & Wellness Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🧠 Mental Health Detector</h1>
+      <div class="header-buttons">
+        <button id="themeToggle" class="btn btn-secondary">🌙 Dark Mode</button>
+        <button id="exportData" class="btn btn-primary">📊 Export Data</button>
+        <button id="importData" class="btn btn-primary">📁 Import Data</button>
+      </div>
+    </header>
+
+    <div class="nav-tabs">
+      <button class="nav-tab active" data-tab="mood-tracker">Mood Tracker</button>
+      <button class="nav-tab" data-tab="assessments">Mental Health Assessment</button>
+      <button class="nav-tab" data-tab="analytics">Analytics</button>
+      <button class="nav-tab" data-tab="resources">Resources</button>
+      <button class="nav-tab" data-tab="progress">Progress</button>
+    </div>
+
+    <!-- Mood Tracker Tab -->
+    <div id="mood-tracker" class="tab-content active">
+      <div class="card">
+        <h2>How are you feeling today?</h2>
+        <div class="mood-selection">
+          <div class="mood-btn" data-mood="excellent">
+            <span class="mood-emoji">🤩</span>
+            <span>Excellent</span>
+          </div>
+          <div class="mood-btn" data-mood="happy">
+            <span class="mood-emoji">😊</span>
+            <span>Happy</span>
+          </div>
+          <div class="mood-btn" data-mood="good">
+            <span class="mood-emoji">🙂</span>
+            <span>Good</span>
+          </div>
+          <div class="mood-btn" data-mood="neutral">
+            <span class="mood-emoji">😐</span>
+            <span>Neutral</span>
+          </div>
+          <div class="mood-btn" data-mood="low">
+            <span class="mood-emoji">😔</span>
+            <span>Low</span>
+          </div>
+          <div class="mood-btn" data-mood="sad">
+            <span class="mood-emoji">😢</span>
+            <span>Sad</span>
+          </div>
+          <div class="mood-btn" data-mood="anxious">
+            <span class="mood-emoji">😰</span>
+            <span>Anxious</span>
+          </div>
+          <div class="mood-btn" data-mood="stressed">
+            <span class="mood-emoji">😫</span>
+            <span>Stressed</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="moodNote">What's on your mind? (Optional)</label>
+          <textarea id="moodNote" rows="3" placeholder="Describe your feelings, what happened today, or anything you'd like to note..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="energyLevel">Energy Level (1-10)</label>
+          <input type="range" id="energyLevel" min="1" max="10" value="5">
+          <div style="text-align: center; margin-top: 5px;">
+            <span id="energyValue">5</span>/10
+          </div>
+        </div>
+
+        <button id="addMoodBtn" class="btn btn-primary" style="width: 100%;">Log Mood</button>
+        
+        <!-- Daily Motivational Quote -->
+        <div id="motivationalQuote" style="margin-top: 25px; padding: 20px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 15px; text-align: center;">
+          <h4 style="margin-bottom: 15px;">💡 Today's Inspiration</h4>
+          <p id="quoteText" style="font-style: italic; font-size: 1.1em; margin-bottom: 10px;"></p>
+          <small id="quoteAuthor"></small>
+          <button id="newQuoteBtn" class="btn btn-secondary" style="margin-top: 15px; background: rgba(255,255,255,0.2);">Get New Quote</button>
+        </div>
+      </div>
+
+      <div class="dashboard">
+        <div class="card">
+          <h2>Recent Mood Entries</h2>
+          <div id="moodLog"></div>
+        </div>
+
+        <div class="card">
+          <h2>Weekly Overview</h2>
+          <div class="chart-container">
+            <canvas id="weeklyChart"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Mood Patterns</h2>
+          <div class="chart-container">
+            <canvas id="trendsChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mental Health Assessment Tab -->
+    <div id="assessments" class="tab-content">
+      <div class="card">
+        <h2>Mental Health Self-Assessment</h2>
+        <p style="margin-bottom: 25px; color: #666;">
+          This assessment combines AI-powered analysis of your mood patterns with standardized screening tools.
+        </p>
+
+        <!-- AI-Based Assessment from Mood Data -->
+        <div style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 20px; border-radius: 15px; margin-bottom: 30px;">
+          <h3 style="margin-bottom: 15px;">🤖 AI-Powered Mental Health Assessment</h3>
+          <p>Our AI analyzes your mood patterns, frequency, and energy levels to provide personalized insights about your mental wellbeing.</p>
+          <button id="runAIAssessment" class="btn btn-secondary" style="margin-top: 15px;">Analyze My Mood Data</button>
+        </div>
+
+        <div id="aiAssessmentResults" style="margin-bottom: 40px;"></div>
+
+        <!-- Traditional Assessments -->
+        <div style="border-top: 2px solid #e0e0e0; padding-top: 30px;">
+          <h3 style="color: var(--primary-color); margin-bottom: 20px;">📋 Traditional Screening Tools</h3>
+          
+          <div id="phq9Assessment">
+            <h4 style="color: var(--primary-color); margin-bottom: 15px;">Depression Screening (PHQ-9)</h4>
+            <p style="margin-bottom: 20px;">Over the last 2 weeks, how often have you been bothered by any of the following problems?</p>
+          </div>
+
+          <div id="gad7Assessment" style="margin-top: 40px;">
+            <h4 style="color: var(--primary-color); margin-bottom: 15px;">Anxiety Screening (GAD-7)</h4>
+            <p style="margin-bottom: 20px;">Over the last 2 weeks, how often have you been bothered by the following problems?</p>
+          </div>
+
+          <button id="calculateAssessment" class="btn btn-primary" style="width: 100%; margin-top: 25px;">Calculate Traditional Assessment</button>
+          
+          <div id="assessmentResults" style="margin-top: 25px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Analytics Tab -->
+    <div id="analytics" class="tab-content">
+      <div class="dashboard">
+        <div class="card">
+          <h2>Mood Analytics</h2>
+          <div id="moodInsights"></div>
+        </div>
+
+        <div class="card">
+          <h2>Monthly Trends</h2>
+          <div class="chart-container">
+            <canvas id="monthlyChart"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Pattern Detection</h2>
+          <div id="patternAnalysis"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resources Tab -->
+    <div id="resources" class="tab-content">
+      <div class="card">
+        <h2>Mental Health Resources</h2>
+        <div class="resource-grid" id="resourcesGrid"></div>
+      </div>
+    </div>
+
+    <!-- Progress Tab -->
+    <div id="progress" class="tab-content">
+      <div class="card">
+        <h2>Your Progress</h2>
+        <div id="progressTracking"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden file input for data import -->
+  <input type="file" id="fileInput" accept=".json" style="display: none;">
+
+  <script src="script.js"></script>
+</body>
+</html>
