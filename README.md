@@ -40,7 +40,7 @@ A beautiful and interactive **frontend web app** that helps users **track their 
 ---
 
 ## 🚀 Getting Started
-[Click Here](mental-health-detector-rose.vercel.app) 👈 to see live demo.
+[Click Here](https://mental-health-detector-rose.vercel.app) 👈 to see live demo.
 
 --- 
 
