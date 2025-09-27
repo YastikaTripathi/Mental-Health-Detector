@@ -37,9 +37,39 @@ A beautiful and interactive **frontend web app** that helps users **track their 
 |-------------|------------|
 | ![Light Mode Screenshot](https://via.placeholder.com/400x250.png?text=Light+Mode) | ![Dark Mode Screenshot](https://via.placeholder.com/400x250.png?text=Dark+Mode) |
 
-> 📸 Replace these placeholder links with actual screenshots from your project.
-
 ---
 
 ## 🚀 Getting Started
 [Click Here](mental-health-detector-rose.vercel.app) 👈 to see live demo.
+
+--- 
+
+## 💡 How It Works
+
+- Select your current mood from the icons.
+
+- Optionally, write a note about how you feel.
+
+- Click “Add Mood” — you’ll see a floating bubble animation 🎈
+
+- View your past moods and charts in the dashboard.
+
+- Toggle Dark/Light Mode for comfort 🌙☀️
+
+---
+
+## 🛠️ Project Structure
+mood-tracker/
+- ├── index.html       # Main HTML structure. 
+- ├── style.css        # All styling and animations. 
+- ├── script.js        # App logic and chart rendering. 
+- └── images/          # Mood icons and visuals. 
+
+--- 
+
+## 🔥 Future Enhancements
+
+- 🚀 Add user authentication (Google / Firebase)
+- 📱 Convert to a Progressive Web App (PWA)
+- 🧠 Integrate AI-based mood insights
+- 🌍 Add backend & database (Node.js + MongoDB)
